@@ -3,14 +3,24 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { CiBookmark, CiShare2 } from 'react-icons/ci';
-import { FaEye } from 'react-icons/fa';
 import { IoIosStar } from 'react-icons/io';
+import { TbCircleArrowLeftFilled } from 'react-icons/tb';
+
+export const generateMetadata = async({params})=>{
+    const {id} = await params;
+    const news = await getNewsDetailsId(id);
+
+    return {
+        title: news.title,
+        description: news.description,
+    }
+}
 
 const NewsDetailsPage = async({params}) => {
     const {id} = await params;
-     console.log(id,'params')
+    
     const news = await getNewsDetailsId(id);
-    console.log(news,'see details')
+   
     return (
     <div className='container mx-auto py-5 max-w-5xl'>
               <div className="card bg-base-100 shadow-sm">
@@ -18,11 +28,12 @@ const NewsDetailsPage = async({params}) => {
 
       
       <div className="flex justify-between items-center bg-slate-200 py-2 px-4 rounded-md">
-        <div>
-            {/* <Image src={news.author?.img} 
+        <div className='flex items-center gap-2'>
+            <Image src={news.author?.img} 
             width={40} 
             height={40}
-            alt={news.author?.name}/> */}
+            alt={news.author?.name}
+            className='rounded-full'/>
            <div>
              <h2 className="font-semibold">{news.author?.name}</h2>
             <h2 className="text-xs">{news.author?.published_date}</h2>
@@ -43,7 +54,7 @@ const NewsDetailsPage = async({params}) => {
       height={300} 
       className="w-full"/>
   </figure>
-  <p className="line-clamp-3">{news.details}</p>
+  <p className="">{news.details}</p>
 
   <div className="flex justify-between items-center">
     <div className="flex items-center gap-2">
@@ -54,8 +65,8 @@ const NewsDetailsPage = async({params}) => {
       <h2>{news.total_view}</h2>
     </div>
     <div>
-      <Link href={`/news/${news._id}`}>
-        <button className="btn btn-accent"><FaEye className="text-xl"/> See Details</button>
+      <Link href={`/category/${news.category_id}`}>
+        <button className="btn btn-accent"><TbCircleArrowLeftFilled className="text-xl"/>See All News for this category</button>
       </Link>
     </div>
   </div>

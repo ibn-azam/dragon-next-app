@@ -1,5 +1,7 @@
 import React from 'react';
-
+export const metadata ={
+    title:"Dragon News | career"
+}
 const CareerPage = () => {
     return (
         <div className='container mx-auto'>
