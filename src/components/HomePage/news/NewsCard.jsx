@@ -1,19 +1,13 @@
-import { getNewsDetailsId } from '@/lib/data';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-import { CiBookmark, CiShare2 } from 'react-icons/ci';
-import { FaEye } from 'react-icons/fa';
-import { IoIosStar } from 'react-icons/io';
+import Image from "next/image";
+import Link from "next/link";
+import { CiBookmark, CiShare2, CiStar } from "react-icons/ci";
+import { FaEye } from "react-icons/fa";
+import { IoIosStar, IoIosStarHalf } from "react-icons/io";
 
-const NewsDetailsPage = async({params}) => {
-    const {id} = await params;
-     console.log(id,'params')
-    const news = await getNewsDetailsId(id);
-    console.log(news,'see details')
+
+const NewsCard = ({news}) => {
     return (
-    <div className='container mx-auto py-5 max-w-5xl'>
-              <div className="card bg-base-100 shadow-sm">
+     <div className="card bg-base-100 shadow-sm">
   <div className="card-body">
 
       
@@ -62,8 +56,7 @@ const NewsDetailsPage = async({params}) => {
   </div>
   
 </div>
-    </div>
     );
 };
 
-export default NewsDetailsPage;
+export default NewsCard;
