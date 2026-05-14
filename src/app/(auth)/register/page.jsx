@@ -18,9 +18,16 @@ const RegisterPage = () => {
             email: email , // required
             password: password, // required
             image: photo,
-            callbackURL: '/',
+            callbackURL: '/login',
         });
-        console.log(res, error)
+        console.log(res, error);
+
+        if(error){
+            alert(error.message);
+        }
+        if(res){
+            alert("signUp successfully");
+        }
     }
 
     return (
